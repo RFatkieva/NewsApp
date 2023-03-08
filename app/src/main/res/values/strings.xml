@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">News App</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="popular_news">Popular News</string>
+    popular_news
 </resources>
