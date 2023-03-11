@@ -11,6 +11,7 @@ import com.example.newsapp.R
 import com.example.newsapp.models.Article
 import kotlinx.android.synthetic.main.item_article.view.*
 
+
 class NewsAdapter:RecyclerView.Adapter<NewsAdapter.NewsViewHolder> () {
     inner class NewsViewHolder(view: View): RecyclerView.ViewHolder(view)
 
@@ -29,12 +30,17 @@ class NewsAdapter:RecyclerView.Adapter<NewsAdapter.NewsViewHolder> () {
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+
         val article=differ.currentList[position]
         holder.itemView.apply {
             Glide.with(this).load(article.urlToImage).into(article_image)
             article_image.clipToOutline= true
             article_title.text=article.title
             article_date.text=article.publishedAt
+
+            setOnClickListener {
+                onItemClickListener?.let { it(article )}
+            }
         }
     }
 
@@ -42,9 +48,9 @@ class NewsAdapter:RecyclerView.Adapter<NewsAdapter.NewsViewHolder> () {
        return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Article)-> Unit)?=null
+    private var onItemClickListener: ((Article)-> Unit)? = null
 
     fun setOnItemClickListener (listener:(Article)-> Unit) {
-        onItemClickListener=listener
+        onItemClickListener = listener
     }
 }

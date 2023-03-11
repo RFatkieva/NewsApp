@@ -9,7 +9,11 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.newsapp.ui.details.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="article"
+            app:argType="com.example.newsapp.models.Article" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.newsapp.ui.favorite.FavoriteFragment"
@@ -25,9 +29,9 @@
     </fragment>
     <fragment
         android:id="@+id/seachFragment"
-        android:name="com.example.newsapp.ui.search.SeachFragment"
+        android:name="com.example.newsapp.ui.search.SearchFragment"
         android:label="fragment_seach"
-        tools:layout="@layout/fragment_seach" >
+        tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_seachFragment_to_detailsFragment2"
             app:destination="@id/detailsFragment"
@@ -43,10 +47,6 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment"
-            app:enterAnim="@android:anim/slide_out_right"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right"/>
+            app:destination="@id/detailsFragment" />
     </fragment>
 </navigation>
