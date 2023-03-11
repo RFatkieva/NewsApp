@@ -14,13 +14,13 @@ import com.example.newsapp.models.NewsResponse
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val repository: NewsRepository):ViewModel() {
     val searchNewsLiveData: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    var searchNewsPage =1
+    var searchNewsPage = 1
 
     init {
         getSearchNews("")
     }
 
-fun getSearchNews(query: String) =
+    fun getSearchNews(query: String) =
         viewModelScope.launch {
             searchNewsLiveData.postValue(Resource.Loading())
             val response = repository.getSearchNews(query = query, pageNumber = searchNewsPage)
@@ -33,4 +33,5 @@ fun getSearchNews(query: String) =
                 searchNewsLiveData.postValue(Resource.Error(message = response.message()))
             }
         }
+
 }
